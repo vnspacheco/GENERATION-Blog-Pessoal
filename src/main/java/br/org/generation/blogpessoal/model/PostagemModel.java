@@ -32,13 +32,16 @@ public class PostagemModel {
 	private String texto;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date = new java.sql.Date(System.currentTimeMillis());
+	private Date data = new java.sql.Date(System.currentTimeMillis());
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private TemaModel tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private UsuarioModel usuario;
 
-	//Encapsulamento
 	public long getId() {
 		return id;
 	}
@@ -62,20 +65,28 @@ public class PostagemModel {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 	
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
 	public TemaModel getTema() {
 		return tema;
 	}
 
 	public void setTema(TemaModel tema) {
 		this.tema = tema;
+	}
+
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
 	}
 }

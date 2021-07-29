@@ -34,12 +34,12 @@ public class PostagemController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<PostagemModel> GetById(@PathVariable long id) {
+	public ResponseEntity<PostagemModel> getById(@PathVariable long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<PostagemModel>> GetByTitulo(@PathVariable String titulo) {
+	public ResponseEntity<List<PostagemModel>> getByTitulo(@PathVariable String titulo) {
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 

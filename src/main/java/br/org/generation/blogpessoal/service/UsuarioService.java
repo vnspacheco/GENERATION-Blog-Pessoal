@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.org.generation.blogpessoal.model.UsuarioLoguinModel;
+import br.org.generation.blogpessoal.model.UsuarioLoginModel;
 import br.org.generation.blogpessoal.model.UsuarioModel;
 import br.org.generation.blogpessoal.repository.UsuarioRepository;
 
@@ -62,7 +62,7 @@ public class UsuarioService {
 
 	}
 
-	public Optional<UsuarioLoguinModel> Logar(Optional<UsuarioLoguinModel> user) {
+	public Optional<UsuarioLoginModel> Logar(Optional<UsuarioLoginModel> user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		Optional<UsuarioModel> usuario = repository.findByUsuario(user.get().getUsuario());
@@ -75,7 +75,10 @@ public class UsuarioService {
 				String authHeader = "Basic " + new String(encodedAuth);
 
 				user.get().setToken(authHeader);
+				user.get().setId(usuario.get().getId());
 				user.get().setNome(usuario.get().getNome());
+				user.get().setFoto(usuario.get().getFoto());
+				user.get().setTipo(usuario.get().getTipo());
 
 				return user;
 			}
