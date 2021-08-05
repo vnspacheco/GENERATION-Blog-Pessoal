@@ -48,17 +48,9 @@ public class PostagemController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<PostagemModel> put(@PathVariable long id, @RequestBody PostagemModel postagem) {
-		Optional<PostagemModel> postagem2 = repository.findById(id);
-
-		if (postagem2.isPresent()) {
-			return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
-		}
-		
-		else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Postagem não encontrada", null);
-		}
+	@PutMapping
+	public ResponseEntity<PostagemModel> put(@RequestBody PostagemModel postagem) {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 	}
 
 	@DeleteMapping("/{id}")

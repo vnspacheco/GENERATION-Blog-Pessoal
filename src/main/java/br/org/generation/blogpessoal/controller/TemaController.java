@@ -50,16 +50,9 @@ public class TemaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(tema));
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<TemaModel> put (@PathVariable long id, @RequestBody TemaModel tema){
-		Optional<TemaModel> tema2 = repository.findById(id);
-		
-		if (tema2.isPresent()) {
-			return ResponseEntity.status(HttpStatus.OK).body(repository.save(tema));
-		}
-		else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tema não encontrado", null);
-		}
+	@PutMapping
+	public ResponseEntity<TemaModel> put (@RequestBody TemaModel tema){
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(tema));
 	}
 	
 	@DeleteMapping("/{id}")
